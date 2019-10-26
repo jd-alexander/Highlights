@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "high.lights"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner deps.androidX.test.instrumentationRunner
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation deps.androidX.viewPager2
+    kapt deps.androidX.lifecycle.compiler
+    kapt deps.androidX.room.compiler
+    kapt deps.google.dagger.compiler
+    kapt deps.google.dagger.androidProcessor
+
+    api deps.kotlin.stdlib
+    api deps.kotlin.coroutines.core
+    api deps.kotlin.coroutines.android
+    api deps.androidX.core.ktx
+    api deps.androidX.activity.ktx
+    api deps.androidX.fragment.ktx
+    api deps.androidX.appCompat
+    api deps.androidX.constraintLayout
+    api deps.androidX.recyclerView
+    api deps.androidX.swipeRefreshLayout
+    api deps.androidX.emoji
+    api deps.androidX.browser
+    api deps.androidX.lifecycle.extensions
+    api deps.androidX.room.runtime
+    api deps.androidX.room.ktx
+    api deps.androidX.paging.runtimeKtx
+    api deps.androidX.navigation.uiKtx
+    api deps.androidX.navigation.fragmentKtx
+    api deps.androidX.work.runtimeKtx
+    api deps.google.material
+    api deps.google.dagger.dagger
+    api deps.google.dagger.android
+    api deps.google.dagger.androidSupport
+    api deps.square.okhttp
+    api deps.square.retrofit.retrofit
+    api deps.square.retrofit.gsonConverter
+    api deps.coil
+
+    testImplementation deps.androidX.test.jUnit.ktx
+    androidTestImplementation deps.androidX.test.core.ktx
+    androidTestImplementation deps.androidX.test.jUnit.ktx
+    androidTestImplementation deps.androidX.test.runner
+}
